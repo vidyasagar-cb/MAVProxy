@@ -717,7 +717,9 @@ def process_mavlink(slave):
         return
     if msgs is None:
         return
-    if mpstate.settings.mavfwd and not mpstate.status.setup_mode:
+    print(str('127.0.0.1:' in str(slave.address))+' Communication channel mother fucka ' + str(slave.address))
+    print('127.0.0.1' in str(slave.address))
+    if mpstate.settings.mavfwd and not mpstate.status.setup_mode and not '127.0.0.1' in str(slave.address):
         for m in msgs:
             mpstate.master().write(m.get_msgbuf())
             if mpstate.status.watch:
